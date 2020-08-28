@@ -10,7 +10,7 @@ class DataModule():
         self.train_path = './dataset/images/train'
         self.val_path = './dataset/images/test'
         self.train_transform = transforms.Compose([
-            transforms.RandomSizedCrop(224),
+            transforms.RandomResizedCrop(224),
             transforms.ToTensor(),
             transforms.Normalize([0.485, 0.456, 0.406],
                                     [0.229, 0.224, 0.225])
