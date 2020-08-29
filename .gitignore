@@ -2,3 +2,7 @@ dataset
 lightning_logs
 1864_33884_bundle_archive
 __pycache__
+.ipynb_checkpoints/
+checkpoints/backups/
+dataset.zip
+temp.py

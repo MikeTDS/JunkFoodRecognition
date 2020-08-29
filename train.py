@@ -12,7 +12,7 @@ def main():
     model = Net()
     model.load_state_dict(torch.load(save_path))
     trainer = Trainer(
-        max_epochs=10, 
+        max_epochs=20, 
         gpus=1,  
         show_progress_bar=True
     )

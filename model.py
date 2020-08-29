@@ -9,7 +9,7 @@ from torch.optim import Adam
 class Net(LightningModule):
     def __init__(self):
         super(Net, self).__init__()
-        self.model = torch.hub.load('pytorch/vision:v0.6.0', 'resnet50', pretrained=True)
+        self.model = torch.hub.load('pytorch/vision:v0.6.0', 'resnet34', pretrained=True)
         self.model.cuda()
 
         #freeze model
@@ -18,13 +18,13 @@ class Net(LightningModule):
                 param.requries_grad = False
 
         self.datamodule = DataModule()
-        self.l1 = torch.nn.Linear(1000,2)
+        self.l5 = torch.nn.Linear(1000,2)
         #self.l2 = torch.nn.Linear(950,2)
 
     def forward(self, x):
         x = self.model.forward(x)
         #x = torch.relu(self.l1(x))
-        return torch.log_softmax(self.l1(x), dim=1)
+        return torch.log_softmax(self.l5(x), dim=1)
 
     def training_step(self, batch, batch_idx):
         data, target = batch
