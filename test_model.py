@@ -1,11 +1,11 @@
-import matplotlib.pyplot as plt
 import torch
 from torch.utils.data import DataLoader
-from pytorch_lightning import LightningModule
-from model import Net
-from datamodule import DataModule
 
-def test(batch_size=32, path='./checkpoints/model.pt'):
+from datamodule import DataModule
+from model import Net
+
+
+def test(batch_size=32, path="./checkpoints/model.pt"):
     all_samples = 0
     counter = 0
 
@@ -14,8 +14,9 @@ def test(batch_size=32, path='./checkpoints/model.pt'):
     model.eval()
     model.cuda()
     data_module = DataModule()
-    data_loader = DataLoader(data_module.get_valset(), batch_size=batch_size, num_workers=4, shuffle=True)
-
+    data_loader = DataLoader(
+        data_module.get_valset(), batch_size=batch_size, num_workers=4, shuffle=True
+    )
 
     for x in iter(data_loader):
         data, target = x
@@ -28,12 +29,12 @@ def test(batch_size=32, path='./checkpoints/model.pt'):
                     out = 0
                 else:
                     out = 1
-                if(out == target[i].cpu().detach().numpy()):
+                if out == target[i].cpu().detach().numpy():
                     counter += 1
         print("checked:", all_samples)
 
-    print("acc:", counter/all_samples)
-    
-if __name__ == '__main__':
+    print("acc:", counter / all_samples)
+
+
+if __name__ == "__main__":
     test()
-    
